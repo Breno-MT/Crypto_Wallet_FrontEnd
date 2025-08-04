@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { loginUser } from '@/pages/utils/loginUser';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -6,8 +7,10 @@ export default function LoginForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // TODO: create the login logic after finishing on the backEnd
-    alert(`Login: ${email} / ${password}`);
+    loginUser({
+      "email": email,
+      "password": password
+    });
   }
 
   return (
