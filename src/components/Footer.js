@@ -1,4 +1,5 @@
-// src/components/Footer.js
+import { appName, appVersion } from "@/pages/utils/globals";
+
 export default function Footer() {
   return (
     <footer className="fixed bottom-0 left-0 w-full text-center text-xs text-gray-500 py-4">
@@ -10,6 +11,8 @@ export default function Footer() {
       >
         Online illustrations by Storyset
       </a>
+      <p>{ appName }</p>
+      <p>{ appVersion }</p>
     </footer>
   );
 }
