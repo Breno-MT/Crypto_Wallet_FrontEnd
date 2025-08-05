@@ -1,33 +1,38 @@
-import { useState } from 'react';
-import { loginUser } from '@/pages/utils/loginUser';
+import { useState } from "react";
+import { loginUser } from "@/pages/utils/loginUser";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
     loginUser({
-      "email": email,
-      "password": password
+      email: email,
+      password: password,
     });
   }
 
   return (
     <div className="flex flex-col md:flex-row items-center bg-white rounded max-w-4xl w-full overflow-hidden">
       <div className="hidden md:block md:w-1/2">
-        <img
+        <Image
           src="/images/Login.gif"
           alt="Login Animation"
-          className="object-cover h-full w-full"
+          width={350}
+          height={350}
           loading="lazy"
         />
-    </div>
+      </div>
       <form
         onSubmit={handleSubmit}
         className="bg-white rounded px-8 pt-6 pb-8 max-w-md w-full"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Sign in</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">
+          Sign in
+        </h2>
 
         <div className="mb-4">
           <label
@@ -72,6 +77,17 @@ export default function LoginForm() {
         >
           Login
         </button>
+        <div className="py-2 flex items-center space-x-1">
+          <p className="text-gray-700 text-sm font-bold mb-2">
+            Don't have an account?
+          </p>
+          <Link
+            href="/user/register"
+            className="text-blue-700 text-sm font-bold mb-2 underline"
+          >
+            Click here
+          </Link>
+        </div>
       </form>
     </div>
   );
