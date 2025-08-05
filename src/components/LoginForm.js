@@ -27,7 +27,7 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         className="bg-white rounded px-8 pt-6 pb-8 max-w-md w-full"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Entrar</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Sign in</h2>
 
         <div className="mb-4">
           <label
