@@ -1,8 +1,8 @@
-const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
+import { backEndURL } from '@/pages/utils/globals';
 
 export async function loginUser(payload) {
   try {
-    const response = await fetch(`${backendURL}/user/login`, {
+    const response = await fetch(`${backEndURL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
