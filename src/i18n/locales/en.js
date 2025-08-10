@@ -9,7 +9,7 @@ export default {
     click_here_capitalized: "Click here",
     logged_in_successfully: "You have been logged in",
     logged_in: "Logged in",
-    redirecting_to_dashboard: "Redirecting to dashboard"
+    redirecting_to_dashboard: "Redirecting to dashboard",
   },
   register: {
     title: "Create an account",
@@ -21,6 +21,8 @@ export default {
     submit: "Create account",
     already_have_account_capitalized: "Already have an account?",
     click_here_capitalized: "Click here",
+    registered_successfully: "Registered successfully",
+    redirecting_to_dashboard: "Redirecting to dashboard",
   },
   dashboard: {
     title: "Dashboard (W.I.P)",

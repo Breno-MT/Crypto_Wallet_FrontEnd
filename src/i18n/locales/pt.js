@@ -21,6 +21,8 @@ export default {
     submit: "Crie uma conta",
     already_have_account_capitalized: "Já tem uma conta?",
     click_here_capitalized: "Clique aqui",
+    registered_successfully: "Registrado com sucesso",
+    redirecting_to_dashboard: "Redirecionando ao dashboard"
   },
   dashboard: {
     title: "Dashboard (Em progresso)",
