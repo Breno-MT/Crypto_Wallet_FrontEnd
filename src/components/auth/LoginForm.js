@@ -24,7 +24,7 @@ export default function LoginForm() {
         password: password,
       });
       alert("Login efetuado com sucesso!");
-      router.push("/user/dashboard");
+      router.push("/dashboard");
     } catch (err) {
       setError(err.message || "Unknown error");
     } finally {
