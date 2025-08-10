@@ -1,4 +1,4 @@
-import { appName, appVersion } from "@/pages/utils/globals";
+import { appName, appVersion } from "@/utils/globals";
 
 export default function Footer() {
   return (

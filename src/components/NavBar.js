@@ -1,4 +1,4 @@
-import { appName } from "@/pages/utils/globals";
+import { appName } from "@/utils/globals";
 import Image from "next/image";
 import Link from "next/link";
 

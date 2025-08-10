@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loginUser } from "@/pages/utils/loginUser";
+import { loginUser } from "@/utils/loginUser";
 import { useRouter } from "next/router";
 import { translateCaption } from "@/i18n";
 import Image from "next/image";

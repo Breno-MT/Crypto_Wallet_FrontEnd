@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { registerUser } from "@/pages/utils/registerUser";
+import { registerUser } from "@/utils/registerUser";
 import { translateCaption } from "@/i18n";
 import Link from "next/link";
 import Image from "next/image";
