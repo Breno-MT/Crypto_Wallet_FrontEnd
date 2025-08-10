@@ -1,18 +1,34 @@
 import { useState } from "react";
 import { loginUser } from "@/pages/utils/loginUser";
+import { useRouter } from 'next/router';
 import Image from "next/image";
 import Link from "next/link";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    loginUser({
-      email: email,
-      password: password,
-    });
+
+    setLoading(true);
+    setError(null);
+    
+    try {
+      await loginUser({
+        email: email,
+        password: password,
+      });
+      alert('Login efetuado com sucesso!')
+      router.push("/user/dashboard");
+    } catch (err) {
+      setError(err.message || "Unknown error");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -30,8 +46,11 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         className="bg-white rounded px-8 pt-6 pb-8 max-w-md w-full"
       >
+        <h1>
+          { error ? `${error}` : "" }
+        </h1>
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">
-          Sign in
+          Sign In
         </h2>
 
         <div className="mb-4">
@@ -49,6 +68,7 @@ export default function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            disabled={loading}
           />
         </div>
 
@@ -68,12 +88,14 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
+            disabled={loading}
           />
         </div>
 
         <button
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+          disabled={loading}
         >
           Login
         </button>
