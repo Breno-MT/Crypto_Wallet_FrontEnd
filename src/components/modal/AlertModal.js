@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Loader } from "lucide-react"
+import { Loader } from "lucide-react";
 import styles from "./styles.module.css";
 
 export default function AlertModal({
@@ -9,7 +9,7 @@ export default function AlertModal({
   message,
   onClose,
   isOpen,
-  isLoading
+  isLoading,
 }) {
   const [visible, setVisible] = useState(isOpen);
 
@@ -40,11 +40,26 @@ export default function AlertModal({
 
   if (!visible) return null;
 
+  const clickedOutsideModal = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
     <div
       className={`${styles.overlay} ${isOpen ? styles.fadeIn : styles.fadeOut}`}
+      onClick={clickedOutsideModal}
     >
       <div className={styles.modal}>
+        <button
+          onClick={onClose}
+          aria-label="Close modal"
+          className={styles.closeButton}
+          type="button"
+        >
+          ×
+        </button>
         {isLoading ? (
           <Loader className={styles.spinner} />
         ) : (
