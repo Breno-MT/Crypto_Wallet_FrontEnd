@@ -1,8 +1,8 @@
-import { backEndURL } from "@/pages/utils/globals";
+import { backEndURL } from '@/utils/globals';
 
-export async function registerUser(payload) {
+export async function loginUser(payload) {
   try {
-    const response = await fetch(`${backEndURL}/user/register`, {
+    const response = await fetch(`${backEndURL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
