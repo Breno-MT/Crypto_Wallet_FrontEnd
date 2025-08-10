@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { registerUser } from "@/pages/utils/registerUser";
+import { translateCaption } from "@/i18n";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -48,11 +49,9 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         className="bg-white rounded px-8 pt-6 pb-8 max-w-md w-full"
       >
-        <h1>
-          { error ? `${error}` : "" }
-        </h1>
+        <h1>{error ? `${error}` : ""}</h1>
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">
-          Create an account
+          {translateCaption("register.title")}
         </h2>
 
         <div className="mb-4">
@@ -60,12 +59,12 @@ export default function LoginForm() {
             htmlFor="username"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Username
+            {translateCaption("register.username")}
           </label>
           <input
             id="username"
             type="text"
-            placeholder="Enter your username"
+            placeholder={translateCaption("register.username_tip")}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-600"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -80,12 +79,12 @@ export default function LoginForm() {
             htmlFor="email"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Email
+            {translateCaption("register.email")}
           </label>
           <input
             id="email"
             type="email"
-            placeholder="youremail@exemple.com"
+            placeholder={translateCaption("register.email_tip")}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-600"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -99,7 +98,7 @@ export default function LoginForm() {
             htmlFor="password"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Password
+            {translateCaption("register.password")}
           </label>
           <input
             id="password"
@@ -118,17 +117,17 @@ export default function LoginForm() {
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
         >
-          Create account
+          {translateCaption("register.submit")}
         </button>
         <div className="py-2 flex items-center space-x-1">
           <p className="text-gray-700 text-sm font-bold mb-2">
-            Already have an account?
+            {translateCaption("register.already_have_account_capitalized")}
           </p>
           <Link
             href="/user/login"
             className="text-blue-700 text-sm font-bold mb-2 underline"
           >
-            Click here
+            {translateCaption("register.click_here_capitalized")}
           </Link>
         </div>
       </form>
