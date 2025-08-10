@@ -1,20 +1,36 @@
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { registerUser } from "@/pages/utils/registerUser";
+import Link from "next/link";
 import Image from "next/image";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    registerUser({
-      username: username,
-      email: email,
-      password: password,
-    });
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      await registerUser({
+        username: username,
+        email: email,
+        password: password,
+      });
+      alert("User registered successfully!");
+      router.push("/user/dashboard");
+    } catch (err) {
+      setError(err.message || "Unknown error");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -32,6 +48,9 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         className="bg-white rounded px-8 pt-6 pb-8 max-w-md w-full"
       >
+        <h1>
+          { error ? `${error}` : "" }
+        </h1>
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">
           Create an account
         </h2>
@@ -52,6 +71,7 @@ export default function LoginForm() {
             onChange={(e) => setUsername(e.target.value)}
             minLength={4}
             required
+            disabled={loading}
           />
         </div>
 
@@ -70,6 +90,7 @@ export default function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            disabled={loading}
           />
         </div>
 
@@ -89,6 +110,7 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={9}
+            disabled={loading}
           />
         </div>
 
