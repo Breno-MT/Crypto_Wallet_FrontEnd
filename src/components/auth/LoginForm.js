@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { loginUser } from "@/pages/utils/loginUser";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import { translateCaption } from "@/i18n";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,13 +17,13 @@ export default function LoginForm() {
 
     setLoading(true);
     setError(null);
-    
+
     try {
       await loginUser({
         email: email,
         password: password,
       });
-      alert('Login efetuado com sucesso!')
+      alert("Login efetuado com sucesso!");
       router.push("/user/dashboard");
     } catch (err) {
       setError(err.message || "Unknown error");
@@ -46,11 +47,9 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         className="bg-white rounded px-8 pt-6 pb-8 max-w-md w-full"
       >
-        <h1>
-          { error ? `${error}` : "" }
-        </h1>
+        <h1>{error ? `${error}` : ""}</h1>
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">
-          Sign In
+          {translateCaption("login.title")}
         </h2>
 
         <div className="mb-4">
@@ -58,12 +57,12 @@ export default function LoginForm() {
             htmlFor="email"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Email
+            {translateCaption("login.email")}
           </label>
           <input
             id="email"
             type="email"
-            placeholder="youremail@exemple.com"
+            placeholder={translateCaption("login.email_tip")}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-600"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -77,7 +76,7 @@ export default function LoginForm() {
             htmlFor="password"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Password
+            {translateCaption("login.password")}
           </label>
           <input
             id="password"
@@ -97,17 +96,17 @@ export default function LoginForm() {
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
           disabled={loading}
         >
-          Login
+          {translateCaption("login.submit")}
         </button>
         <div className="py-2 flex items-center space-x-1">
           <p className="text-gray-700 text-sm font-bold mb-2">
-            Don't have an account?
+            {translateCaption("login.dont_have_account_capitalized")}
           </p>
           <Link
             href="/user/register"
             className="text-blue-700 text-sm font-bold mb-2 underline"
           >
-            Click here
+            {translateCaption("login.click_here_capitalized")}
           </Link>
         </div>
       </form>
