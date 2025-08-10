@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { registerUser } from "@/utils/registerUser";
-import { translateCaption } from "@/i18n";
+import { translateCaption, capitalizeStr } from "@/i18n";
+import { FaCheckCircle } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import AlertModal from "../modal/AlertModal";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -12,12 +14,14 @@ export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     setLoading(true);
     setError(null);
+    setShowModal(true);
 
     try {
       await registerUser({
@@ -25,8 +29,10 @@ export default function LoginForm() {
         email: email,
         password: password,
       });
-      alert("User registered successfully!");
-      router.push("/dashboard");
+      setTimeout(() => {
+        setShowModal(false);
+        router.push("/dashboard");
+      }, 2000);
     } catch (err) {
       setError(err.message || "Unknown error");
     } finally {
@@ -131,6 +137,25 @@ export default function LoginForm() {
           </Link>
         </div>
       </form>
+      <AlertModal
+        icon={FaCheckCircle}
+        iconColor="color-green"
+        title={
+          loading
+            ? `${capitalizeStr(translateCaption("generic.loading"))}...`
+            : `${capitalizeStr(
+                translateCaption("register.registered_successfully")
+              )}!`
+        }
+        message={
+          loading
+            ? ""
+            : `${translateCaption("register.redirecting_to_dashboard")}...`
+        }
+        onClose={() => setShowModal(false)}
+        isOpen={showModal}
+        isLoading={loading}
+      />
     </div>
   );
 }
