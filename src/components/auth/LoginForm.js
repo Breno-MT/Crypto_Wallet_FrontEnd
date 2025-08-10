@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { loginUser } from "@/utils/loginUser";
 import { useRouter } from "next/router";
-import { translateCaption } from "@/i18n";
+import { translateCaption, capitalizeStr } from "@/i18n";
+import { FaCheckCircle } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+import AlertModal from "../modal/AlertModal";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -11,20 +13,24 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     setLoading(true);
     setError(null);
+    setShowModal(true);
 
     try {
       await loginUser({
         email: email,
         password: password,
       });
-      alert("Login efetuado com sucesso!");
-      router.push("/dashboard");
+      setTimeout(() => {
+        setShowModal(false);
+        router.push("/dashboard");
+      }, 2000);
     } catch (err) {
       setError(err.message || "Unknown error");
     } finally {
@@ -110,6 +116,21 @@ export default function LoginForm() {
           </Link>
         </div>
       </form>
+      <AlertModal
+        icon={FaCheckCircle}
+        iconColor="color-green"
+        title={
+          loading
+            ? `${capitalizeStr(translateCaption("generic.loading"))}...`
+            : `${capitalizeStr(translateCaption("login.logged_in"))}!`
+        }
+        message={
+          loading ? "" : `${translateCaption("login.redirecting_to_dashboard")}...`
+        }
+        onClose={() => setShowModal(false)}
+        isOpen={showModal}
+        isLoading={loading}
+      />
     </div>
   );
 }
