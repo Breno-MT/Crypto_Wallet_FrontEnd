@@ -7,6 +7,9 @@ export default {
     submit: "Logar",
     dont_have_account_capitalized: "Não tem uma conta?",
     click_here_capitalized: "Clique aqui",
+    logged_in_successfully: "Você foi logado com sucesso",
+    logged_in: "Logado",
+    redirecting_to_dashboard: "Redirecionando ao dashboard"
   },
   register: {
     title: "Criar uma conta",
@@ -21,5 +24,10 @@ export default {
   },
   dashboard: {
     title: "Dashboard (Em progresso)",
+  },
+  generic: {
+    loading: "carregando",
+    success: "sucesso",
+    failed: "falhou",
   },
 };

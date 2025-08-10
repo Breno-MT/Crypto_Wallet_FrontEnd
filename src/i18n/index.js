@@ -27,3 +27,8 @@ export function translateCaption(path, params = {}) {
 
   return text;
 }
+
+export function capitalizeStr(str) {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}

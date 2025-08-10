@@ -7,6 +7,9 @@ export default {
     submit: "Login",
     dont_have_account_capitalized: "Don't have an account?",
     click_here_capitalized: "Click here",
+    logged_in_successfully: "You have been logged in",
+    logged_in: "Logged in",
+    redirecting_to_dashboard: "Redirecting to dashboard"
   },
   register: {
     title: "Create an account",
@@ -21,5 +24,10 @@ export default {
   },
   dashboard: {
     title: "Dashboard (W.I.P)",
+  },
+  generic: {
+    loading: "loading",
+    success: "success",
+    failed: "failed",
   },
 };
