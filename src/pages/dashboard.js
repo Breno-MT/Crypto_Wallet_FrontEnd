@@ -1,4 +1,4 @@
-import DashboardScreen from "@/components/DashboardScreen";
+import DashboardScreen from "@/components/dashboard/DashboardScreen";
 import Layout from "./layout";
 
 export default function Dashboard() {
