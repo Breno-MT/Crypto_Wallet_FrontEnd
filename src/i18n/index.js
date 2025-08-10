@@ -2,7 +2,7 @@ import en from "./locales/en";
 import pt from "./locales/pt";
 
 const dictionaries = { en, pt };
-let currentLang = "pt";
+let currentLang = "en";
 
 export function setLang(lang) {
   if (dictionaries[lang]) {
