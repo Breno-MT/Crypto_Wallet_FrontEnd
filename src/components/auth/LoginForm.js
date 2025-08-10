@@ -122,7 +122,7 @@ export default function LoginForm() {
         title={
           loading
             ? `${capitalizeStr(translateCaption("generic.loading"))}...`
-            : `${capitalizeStr(translateCaption("login.logged_in"))}!`
+            : `${capitalizeStr(translateCaption("login.logged_in_successfully"))}!`
         }
         message={
           loading ? "" : `${translateCaption("login.redirecting_to_dashboard")}...`
