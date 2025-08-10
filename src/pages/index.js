@@ -1,5 +1,5 @@
 import Head from "next/head";
-import HomeScreen from "@/components/HomeScreen";
+import HomeScreen from "@/components/home/HomeScreen";
 import Layout from "./layout";
 
 export default function Home() {
